@@ -1,0 +1,20 @@
+{% if survey_list %}
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for survey in survey_list %}
+			<tr>
+				<td><a href="{% url 'surveys:detail' survey.id %}">{{survey.name}}</a></td>
+				<td>{{survey.survey_type}}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>No surveys are available right now.</p>
+{% endif %}

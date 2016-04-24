@@ -1,0 +1,19 @@
+<h1>{{survey.name}}</h1>
+
+{% if error_message %}
+<p><strong>{{error_message}}</strong></p>
+{% endif %}
+
+<form action="{% url 'surveys:report' survey.id %}" method="get">
+{% for question in survey.question_set.all %}
+	<label for="question{{question.id}}_choice{{choice.id}}">{{question.question_text}}</label>
+	<select id="question{{question.id}}_choice{{choice.id}}" name="question{{question.id}}">
+	{% for choice in question.choice_set.all %}
+		<option value="{{choice.value}}">{{choice.choice_text}}</option>
+	{% endfor %}
+	</select>
+	<br />
+{% endfor %}
+
+	<input type="submit" value="report" />
+</form>
